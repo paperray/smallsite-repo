@@ -1,0 +1,21 @@
+{
+    "name": "paperstreetmedia/smallsite-girls",
+    "description": "A packages for girls",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "paperray",
+            "email": "paperraytanute@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+		"php": ">=5.3.0",
+		"illuminate/database" :"4.2.*"
+    },
+	"autoload":{
+		"psr-0" : {
+			"Paperstreetmedia": "src/"
+		}
+	}
+}
