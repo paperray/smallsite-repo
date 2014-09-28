@@ -2,6 +2,9 @@
 namespace Paperstreetmedia\DataAccessObject;
 
 use Illuminate\Database\Capsule\Manager as DB;
+// Set the event dispatcher used by Eloquent models... (optional)
+		use Illuminate\Events\Dispatcher;
+		use Illuminate\Container\Container;
 
 class LaravelMysqlObject extends GirlObjectBaseClass implements GirlObjectInterface
 {
@@ -20,9 +23,7 @@ class LaravelMysqlObject extends GirlObjectBaseClass implements GirlObjectInterf
 			'prefix'    => '',
 		]);
 
-		// Set the event dispatcher used by Eloquent models... (optional)
-		use Illuminate\Events\Dispatcher;
-		use Illuminate\Container\Container;
+		
 		$capsule->setEventDispatcher(new Dispatcher(new Container));
 
 		// Make this Capsule instance available globally via static methods... (optional)
