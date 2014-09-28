@@ -1,8 +1,8 @@
 <?php
 namespace Paperstreetmedia\DataAccessObject;
 
-use Illuminate\Database\Capsule\Manager as DB;
-
+//use Illuminate\Database\Capsule\Manager as DB;
+use \DB;
 class LaravelMysqlObject extends GirlObjectBaseClass implements GirlObjectInterface
 {
 	public function create()
