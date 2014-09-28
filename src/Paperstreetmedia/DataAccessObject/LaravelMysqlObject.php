@@ -1,5 +1,5 @@
 <?php
-namespace Paperstreetmedia\DataAccessObject;
+namespace \Paperstreetmedia\DataAccessObject;
 
 use Illuminate\Database\Capsule\Manager as DB;
 // Set the event dispatcher used by Eloquent models... (optional)
