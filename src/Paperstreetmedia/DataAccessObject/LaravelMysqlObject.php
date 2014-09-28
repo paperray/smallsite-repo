@@ -2,24 +2,26 @@
 namespace Paperstreetmedia\DataAccessObject;
 
 use PDO;
-
+use \Paperstreetmedia\Ajax\Ratings;
+use \Paperstreetmedia\Ajax\Favorites;
 use Illuminate\Database\Capsule\Manager as DB;
-// Set the event dispatcher used by Eloquent models... (optional)
-		use Illuminate\Events\Dispatcher;
-		use Illuminate\Container\Container;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Container\Container;
 
 class LaravelMysqlObject extends GirlObjectBaseClass implements GirlObjectInterface
 {
-	public function __construct()
+	public function __construct(Ratings $ratings, Favorites $favorite)
 	{
+		$this->ratings = $ratings;
+		$this->favorite = $favorite;
 		$capsule = new DB;
 
 		$capsule->addConnection([
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'laraveltubetour',
-			'username'  => 'laraveltubetour',
-			'password'  => '6ZHo1eCBv32jVAp',
+			'username'  => 'root',
+			'password'  => 'secret',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
@@ -49,14 +51,16 @@ class LaravelMysqlObject extends GirlObjectBaseClass implements GirlObjectInterf
 	
 	public function readAll(array $data)
 	{
+
 		try {
 			$query = DB::table('girls');
 			if($data) $query->whereIn('id', $data['girlidlist']);
 			$girllists = $query->get();
+			//var_dump($girllists);die();
 			$data = array();
 			foreach($girllists as $key => $girllist){
 				$girllist->ratings = $this->ratings->get(array('girlid' => $girllist->id));
-				$girllist->favorites = $this->favorite->getGirlFavoriteCounts($girllist->id);
+				//$girllist->favorites = $this->favorite->getGirlFavoriteCounts($girllist->id);
 				$data[] = $girllist;
 			}
 			
